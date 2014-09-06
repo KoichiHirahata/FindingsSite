@@ -1,0 +1,10 @@
+{
+  "name": "FindingsSite",
+  "version": "0.0.0",
+  "description": "FindingsSite",
+  "main": "app.js",
+  "author": {
+    "name": "Satoko",
+    "email": ""
+  }
+}
