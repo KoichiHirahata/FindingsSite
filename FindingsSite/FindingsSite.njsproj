@@ -76,6 +76,7 @@
     <Compile Include="public\js\jquery-1.11.1.min.js" />
     <Compile Include="public\js\jquery-2.1.1.min.js" />
     <Compile Include="public\js\json2.js" />
+    <Compile Include="public\js\start.js" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
   <ProjectExtensions>
