@@ -55,7 +55,6 @@
     <TypeScriptCompile Include="routes\index_post.ts" />
     <TypeScriptCompile Include="routes\result.ts" />
     <TypeScriptCompile Include="Scripts\typings\node\node.d.ts" />
-    <TypeScriptCompile Include="server.ts" />
     <Content Include="package.json" />
     <Content Include="README.md" />
   </ItemGroup>
@@ -63,6 +62,7 @@
     <Folder Include="public\" />
     <Folder Include="public\image%24\" />
     <Folder Include="public\js\" />
+    <Folder Include="public\images\" />
     <Folder Include="public\stylesheets\" />
     <Folder Include="routes\" />
     <Folder Include="Scripts\" />
