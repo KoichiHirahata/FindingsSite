@@ -47,23 +47,23 @@ exports.index = function (req, res) {
                         + "LEFT JOIN status ON exam.exam_status = status.status_no "
                         + "FULL JOIN (SELECT * FROM diag INNER JOIN diag_name ON diag.diag_code = diag_name.no) as d_table ON exam.exam_id = d_table.exam_no "
                         + "WHERE exam_id =\'" + escapeStr(exam_id) + "\' AND exam_visible = true", function (err, result) {
-                            console.log(result.rows.length);
+                            //console.log(result.rows.length);
                             if (result !== undefined && result.rows.length !== 0) {
                                 var operators: string = "";
                                 if (result.rows[0].operator1 != null) {
                                     operators = result.rows[0].operator1;
                                 }
                                 if (result.rows[0].operator2 != null) {
-                                    operators += result.rows[0].operator2;
+                                    operators += "/" + result.rows[0].operator2;
                                 }
                                 if (result.rows[0].operator3 != null) {
-                                    operators += result.rows[0].operator3;
+                                    operators += "/" + result.rows[0].operator3;
                                 }
                                 if (result.rows[0].operator4 != null) {
-                                    operators += result.rows[0].operator4;
+                                    operators += "/" + result.rows[0].operator4;
                                 }
                                 if (result.rows[0].operator5 != null) {
-                                    operators += result.rows[0].operator5;
+                                    operators += "/" + result.rows[0].operator5;
                                 }
 
                                 var diagnoses: string = "";
@@ -73,8 +73,12 @@ exports.index = function (req, res) {
                                     }
                                 }
 
-                                if (result.rows[0].findings !== undefined && result.rows[0].findings != null) {
-                                    result.rows[0].findings = result.rows[0].findings.replace(/\n/g, "<br />");
+                                if (result.rows[0].findings != null) {
+                                    result.rows[0].findings = result.rows[0].findings.replace(/\n/g, "<br>");
+                                }
+
+                                if (result.rows[0].comment != null) {
+                                    result.rows[0].comment = result.rows[0].comment.replace(/\n/g, "<br>");
                                 }
 
                                 res.render('result', {
