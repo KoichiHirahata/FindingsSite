@@ -14,4 +14,22 @@
 }
 exports.escapeStr = escapeStr;
 ;
+
+function makeOrganList(result) {
+    var ret_text = "<select id='organ'><option value=''>（指定なし）";
+    var organ_title = "";
+    for (var i = 0; i < result.rows.length; i++) {
+        if (result.rows[i].bt_order == 0) {
+            organ_title = result.rows[i].name_jp;
+        } else {
+            ret_text += "<option value='" + result.rows[i].id + "'>[" + organ_title + "]　" + result.rows[i].name_jp;
+        }
+    }
+    ret_text += "</select>";
+
+    //console.log(ret_text);
+    return ret_text;
+}
+exports.makeOrganList = makeOrganList;
+;
 //# sourceMappingURL=functions.js.map

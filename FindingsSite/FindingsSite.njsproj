@@ -41,6 +41,8 @@
     <Content Include="public\stylesheets\bootstrap.css.map" />
     <Content Include="public\stylesheets\bootstrap.min.css" />
     <Content Include="public\stylesheets\bootstrap_original.min.css" />
+    <Content Include="public\stylesheets\jquery-ui.min.css" />
+    <Content Include="public\stylesheets\search.css" />
     <Content Include="public\stylesheets\style.css" />
     <Content Include="public\stylesheets\.css" />
     <Content Include="views\err_close.jade" />
@@ -48,12 +50,14 @@
     <Content Include="views\index.jade" />
     <Content Include="views\layout.jade" />
     <Content Include="views\result.jade" />
+    <Content Include="views\search.jade" />
     <Content Include="views\start.jade" />
-    <TypeScriptCompile Include="routes\conf.ts" />
     <TypeScriptCompile Include="routes\functions.ts" />
     <TypeScriptCompile Include="routes\index.ts" />
     <TypeScriptCompile Include="routes\index_post.ts" />
     <TypeScriptCompile Include="routes\result.ts" />
+    <TypeScriptCompile Include="routes\search.ts" />
+    <TypeScriptCompile Include="routes\search_post.ts" />
     <TypeScriptCompile Include="Scripts\typings\node\node.d.ts" />
     <Content Include="package.json" />
     <Content Include="README.md" />
@@ -75,7 +79,9 @@
     <Compile Include="public\js\bootstrap.min.js" />
     <Compile Include="public\js\jquery-1.11.1.min.js" />
     <Compile Include="public\js\jquery-2.1.1.min.js" />
+    <Compile Include="public\js\jquery-ui.min.js" />
     <Compile Include="public\js\json2.js" />
+    <Compile Include="public\js\search.js" />
     <Compile Include="public\js\start.js" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />

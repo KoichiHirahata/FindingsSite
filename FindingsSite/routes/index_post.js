@@ -13,7 +13,7 @@ exports.index = function (req, res) {
             console.log(err);
         } else {
             if (req.session.login === true && req.body.func != "login") {
-                client.query("SELECT pt_name, exam_id, to_char(birthday, \'yyyy/mm/dd\') AS b_day, to_char(exam_day,\'yyyy/mm/dd\') AS e_day, name_jp " + "FROM patient, exam, exam_type " + "WHERE exam.pt_id=\'" + escapeStr(req.body.pt_id) + '\' ' + "AND patient.pt_id=exam.pt_id AND exam.exam_type=exam_type.type_no", function (err, result) {
+                client.query("SELECT pt_name, exam_id, to_char(birthday, \'yyyy/mm/dd\') AS b_day, to_char(exam_day,\'yyyy/mm/dd\') AS e_day, name_jp " + "FROM patient, exam, exam_type " + "WHERE exam.pt_id=\'" + escapeStr(req.body.pt_id) + '\' ' + "AND patient.pt_id=exam.pt_id AND exam.exam_type=exam_type.type_no ORDER BY exam_day DESC", function (err, result) {
                     res.send(result);
                     done();
                 });

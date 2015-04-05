@@ -1,6 +1,6 @@
 ﻿/// <reference path="../Scripts/typings/express.d.ts" />
 
-import c = require('./conf');
+var c = require('./conf');
 import express = require('express');
 export function index(req: any, res: any) {
     res.render('index',

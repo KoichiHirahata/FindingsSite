@@ -1,7 +1,7 @@
 ﻿/// <reference path="../Scripts/typings/pg/pg.d.ts" />
 
 import f = require('./functions');
-import c = require('./conf');
+var c = require('./conf');
 var pg = require('pg');
 var escapeStr = f.escapeStr;
 
@@ -17,7 +17,7 @@ exports.index = function (req, res) {
                 client.query("SELECT pt_name, exam_id, to_char(birthday, \'yyyy/mm/dd\') AS b_day, to_char(exam_day,\'yyyy/mm/dd\') AS e_day, name_jp "
                     + "FROM patient, exam, exam_type "
                     + "WHERE exam.pt_id=\'" + escapeStr(req.body.pt_id) + '\' '
-                    + "AND patient.pt_id=exam.pt_id AND exam.exam_type=exam_type.type_no", function (err, result) {
+                    + "AND patient.pt_id=exam.pt_id AND exam.exam_type=exam_type.type_no ORDER BY exam_day DESC", function (err, result) {
                         res.send(result);
                         done();
                     });

@@ -1,7 +1,7 @@
 ﻿/// <reference path="../Scripts/typings/pg/pg.d.ts" />
 
 import f = require('./functions');
-import c = require('./conf');
+var c = require('./conf');
 var pg = require('pg');
 var escapeStr = f.escapeStr;
 
@@ -45,10 +45,11 @@ exports.index = function (req, res) {
                         + "LEFT JOIN equipment ON exam.equipment = equipment.equipment_no "
                         + "LEFT JOIN place ON exam.place_no = place.place_no "
                         + "LEFT JOIN status ON exam.exam_status = status.status_no "
-                        + "RIGHT JOIN (SELECT * FROM diag INNER JOIN diag_name ON diag.diag_code = diag_name.no) as d_table ON exam.exam_id = d_table.exam_no "
+                        + "FULL JOIN (SELECT * FROM diag INNER JOIN diag_name ON diag.diag_code = diag_name.no) as d_table ON exam.exam_id = d_table.exam_no "
                         + "WHERE exam_id =\'" + escapeStr(exam_id) + "\' AND exam_visible = true", function (err, result) {
-                            if (result != null) {
-                                var operators: string;
+                            console.log(result.rows.length);
+                            if (result !== undefined && result.rows.length !== 0) {
+                                var operators: string = "";
                                 if (result.rows[0].operator1 != null) {
                                     operators = result.rows[0].operator1;
                                 }
@@ -67,7 +68,13 @@ exports.index = function (req, res) {
 
                                 var diagnoses: string = "";
                                 for (var k = 0; k < result.rows.length; k++) {
-                                    diagnoses += (result.rows[k].diag_name + "<br />");
+                                    if (result.rows[k].diag_name != null) {
+                                        diagnoses += (result.rows[k].diag_name + "<br />");
+                                    }
+                                }
+
+                                if (result.rows[0].findings !== undefined && result.rows[0].findings != null) {
+                                    result.rows[0].findings = result.rows[0].findings.replace(/\n/g, "<br />");
                                 }
 
                                 res.render('result', {
@@ -88,14 +95,14 @@ exports.index = function (req, res) {
                                     place: result.rows[0].place,
                                     img1: "/image$/" + result.rows[0].exam_day.substr(0, 4) + "/" + exam_id + "_1.png",
                                     img2: "/image$/" + result.rows[0].exam_day.substr(0, 4) + "/" + exam_id + "_2.png",
-                                    findings: (result.rows[0].findings).replace(/\n/g, "<br />"),
+                                    findings: result.rows[0].findings,
                                     comment: result.rows[0].comment,
                                     hp: c.hp
 
                                 });
                             } else {
                                 res.render('err_close', {
-                                    msg: 'エラーが発生しました。（resultがnullです。）'
+                                    msg: 'データがありません。'
                                 });
                             }
                         });

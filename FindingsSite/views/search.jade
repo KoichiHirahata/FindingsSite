@@ -1,0 +1,40 @@
+﻿doctype html
+html
+  head
+    meta(http-equiv="X-UA-Compatible" content="IE=edge")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    title= title
+    link(href="stylesheets/bootstrap.min.css" rel="stylesheet")
+    link(href="stylesheets/jquery-ui.min.css" rel="stylesheet")
+    link(href="stylesheets/search.css" rel="stylesheet")
+  body
+    script(src="js/jquery-1.11.1.min.js")
+    script(src="js/jquery-ui.min.js")
+    script(src="js/bootstrap.min.js")
+    script(src="js/search.js")
+
+    div.container
+      h1= title
+      div#left_frame
+        p(style="margin-top:15px") 検索開始日付
+        input#date_from(type="text" autocomplete="off" style="width:150px;")
+        p(style="margin-top:15px") 検索最終日付
+        input#date_to(type="text" autocomplete="off" style="width:150px;")
+
+        p(style="margin-top:15px") 臓器
+        span!= organ
+        span#diag_name
+
+        p(style="margin-top:15px") 目的
+        input#purpose(type="text" autocomplete="off" style="width:250px;")
+        p(style="margin-top:15px") 所見
+        input#findings(type="text" autocomplete="off" style="width:250px;")
+        p(style="margin-top:15px") コメント
+        input#comment(type="text" autocomplete="off" style="width:250px;")
+        p(style="margin-top:15px") 病理
+        input#patho(type="text" autocomplete="off" style="width:250px;")
+
+        input#post_criteria(type="button" value="上記条件で検索" style="margin-top:15px")
+
+      div#right_frame
+        p#conclusion

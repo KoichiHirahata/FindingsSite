@@ -15,6 +15,8 @@ var session = require('express-session');
 
 var index_post = require('./routes/index_post');
 var result = require('./routes/result');
+var search = require('./routes/search');
+var search_post = require('./routes/search_post.js');
 var options = {
     key: fs.readFileSync('server.key'),
     cert: fs.readFileSync('server.crt'),
@@ -51,6 +53,8 @@ if ('development' == app.get('env')) {
 app.get("/", routes.index);
 app.post('/', index_post.index);
 app.get("/result/:exam_id", result.index);
+app.get("/search", search.index);
+app.post("/search", search_post.index);
 
 process.on('uncaughtException', function (err) {
     console.log(err);
