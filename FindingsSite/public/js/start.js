@@ -1,6 +1,6 @@
 ﻿jQuery(function ($) {
     $(document).ready(function () {
-        $("#pt_id").focus()
+        $("#pt_id").focus();
     });
     
     $("#send_pt_id").on("click", function () {
@@ -30,7 +30,7 @@
                         var resultTable = "<table border=1 class=\"table table-bordered\" style=\'margin-top:20px\'>" 
                       + "<thead><tr><td>患者名</td><td>生年月日</td></tr></thead>" 
                       + "<tr><td>" + result.rows[0].pt_name + "</td><td>" + result.rows[0].b_day + "</td></tr></table>" 
-                      + "<table border=1 class=\"table table-striped table-bordered table-hover\" style=\'margin-top:20px\'>" 
+                      + "<table border=1 id=\'exam_list\' class=\"table table-striped table-bordered table-hover\" style=\'margin-top:20px\'>" 
                       + "<thead><tr><td>検査日</td><td>検査種別</td><td></td></tr></thead>";
                         
                         for (var i = 0; i < result.rows.length; i++) {

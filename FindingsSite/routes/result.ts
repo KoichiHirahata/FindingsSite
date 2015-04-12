@@ -29,7 +29,7 @@ exports.index = function (req, res) {
                         + "place.name1 as place, "
                         + "findings, comment, "
                         + "status.name_jp as status, "
-                        + "d_table.name_jp as diag_name "
+                        + "d_table.name_jp as diag_name, premodifier, postmodifier, suspect " //Change name_jp to name_eng in English version
                         + "FROM exam "
                         + "LEFT JOIN patient ON exam.pt_id = patient.pt_id "
                         + "LEFT JOIN department ON exam.department = department.code "
@@ -66,10 +66,22 @@ exports.index = function (req, res) {
                                     operators += "/" + result.rows[0].operator5;
                                 }
 
+                                //Make diagnoses strings
                                 var diagnoses: string = "";
                                 for (var k = 0; k < result.rows.length; k++) {
                                     if (result.rows[k].diag_name != null) {
-                                        diagnoses += (result.rows[k].diag_name + "<br />");
+                                        if (result.rows[k].premodifier != null)
+                                        { diagnoses += result.rows[k].premodifier; }
+
+                                        diagnoses += result.rows[k].diag_name;
+
+                                        if (result.rows[k].postmodifier != null)
+                                        { diagnoses += result.rows[k].postmodifier; }
+
+                                        if (result.rows[k].suspect === true)
+                                        { diagnoses += "疑い"; } //Change strings to 'suspected' in English version
+
+                                        diagnoses += "<br />";
                                     }
                                 }
 

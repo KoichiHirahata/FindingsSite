@@ -5,7 +5,6 @@ var pg = require('pg');
 var escapeStr = f.escapeStr;
 
 exports.index = function (req, res) {
-    //console.log("来た。");
     pg.connect(c.conf, function (err, client, done) {
         if (err) {
             res.render('err', {
