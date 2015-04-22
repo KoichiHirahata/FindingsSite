@@ -31,7 +31,7 @@
                       + "<thead><tr><td>患者名</td><td>生年月日</td></tr></thead>" 
                       + "<tr><td>" + result.rows[0].pt_name + "</td><td>" + result.rows[0].b_day + "</td></tr></table>" 
                       + "<table border=1 id=\'exam_list\' class=\"table table-striped table-bordered table-hover\" style=\'margin-top:20px\'>" 
-                      + "<thead><tr><td>検査日</td><td>検査種別</td><td></td></tr></thead>";
+                      + "<thead><tr><td>検査日</td><td>検査種別</td><td></td></tr></thead><tbody>";
                         
                         for (var i = 0; i < result.rows.length; i++) {
                             resultTable += "<tr><td>" + result.rows[i].e_day + "</td><td>" 
@@ -40,10 +40,14 @@
                         + location.href + "result/" + result.rows[i].exam_id + "\')\">表示</button></td></tr>";
                         }
                         
-                        resultTable += "</table>";
+                        resultTable += "</tbody></table>";
                         jQuery(function ($) {
                             $("#conclusion").empty();
                             $(resultTable).appendTo("#conclusion");
+                            $('#exam_list').DataTable({
+                                "bFilter": false,
+                                "pageLength": 25
+                            });
                         });
                     } else {
                         jQuery(function ($) {
