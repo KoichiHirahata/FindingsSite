@@ -27,4 +27,3 @@ node_modules
 server.crt
 server.key
 conf.js
-conf.ts
