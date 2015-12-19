@@ -18,7 +18,8 @@ function index(req, res) {
                 res.render('index', {
                     title: c.title,
                     usr: 'ユーザー：' + result.rows[0].op_name,
-                    msg: '患者IDを入力してください。'
+                    msg: '患者IDを入力してください。',
+                    patient_id: pt_id
                 });
             });
         }
