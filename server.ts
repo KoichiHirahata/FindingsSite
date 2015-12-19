@@ -15,6 +15,7 @@ var session = require('express-session');
 
 var login = require('./routes/login');
 var login_post = require('./routes/login_post');
+var logout = require('./routes/logout');
 var result = require('./routes/result');
 var search = require('./routes/search');
 var search_post = require('./routes/search_post.js');
@@ -43,19 +44,13 @@ app.use(session({
     secret: 'keyboard cat',
     //cookie: { secure: true } //?invalid csrf token?
 }));
-var sessionCheck = function (req, res, next) {
-    //if (req.session.logined === true) {
+var sessionCheck = function(req, res, next) {
     if (req.session.login === true) {
-    //if (req.session.user) {
         next();
     } else {
         res.redirect('/login');
     }
 };
-//app.use('/login', require('./routes/login'));
-//app.all('*',sessionCheck);
-//app.use('/', sessionCheck, routes);
-//app.use(session({ key: 'session_id' }));
 app.use(express.static(__dirname + '/public'));
 
 // development only
@@ -66,14 +61,15 @@ if ('development' == app.get('env')) {
 app.get("/", sessionCheck, routes.index);
 app.get("/login", login.index);
 app.post('/login', login_post.index);
+app.get("/logout", logout.index);
 app.get("/result/:exam_id", result.index);
 app.get("/search", search.index);
 app.post("/search", search_post.index);
 
-process.on('uncaughtException', function (err) {
+process.on('uncaughtException', function(err) {
     console.log(err);
 });
 
-https.createServer(options, app).listen(app.get('port'), function () {
+https.createServer(options, app).listen(app.get('port'), function() {
     console.log('Express server listening on port ' + app.get('port'));
 });
