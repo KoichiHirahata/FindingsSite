@@ -11,6 +11,7 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var errorhandler = require('errorhandler');
 var session = require('express-session');
+var index_post = require('./routes/index_post');
 var login = require('./routes/login');
 var login_post = require('./routes/login_post');
 var logout = require('./routes/logout');
@@ -53,6 +54,7 @@ if ('development' == app.get('env')) {
     app.use(errorhandler());
 }
 app.get("/", sessionCheck, routes.index);
+app.post("/", index_post.index);
 app.get("/login", login.index);
 app.post('/login', login_post.index);
 app.get("/logout", logout.index);
