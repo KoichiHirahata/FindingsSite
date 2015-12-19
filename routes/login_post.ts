@@ -32,11 +32,6 @@ exports.index = function (req, res) {
                         req.session.login = true;
                         req.session.name = req.body.operator_id;
                         res.redirect('/');
-                        // res.render('index', {
-                        //     title: c.title,
-                        //     usr: 'ユーザー：' + result.rows[0].op_name,
-                        //     msg: '患者IDを入力してください。'
-                        // });
                     }
                     done();
                 });
