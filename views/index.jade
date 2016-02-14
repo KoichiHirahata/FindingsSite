@@ -8,13 +8,13 @@ html
     link(href="styleshhets/jquery.dataTables.min.css" rel="stylesheet")
   body()
     script(src="js/jquery-1.11.1.min.js")
-    script(src="js/jquery.dataTables.min.js" type="text/javascript" charset="utf8")
     script(src="js/bootstrap.min.js")
+    script(src="js/jquery.dataTables.min.js" type="text/javascript" charset="utf8")
     script(src="js/index.js")
     div.container
       h1= title
       div(align="right")
-        <button type="button" class="btn btn-success btn-sm" onclick="window.open('./search')">病名で検索</button>&nbsp;&nbsp;
+        <!--<button type="button" class="btn btn-success btn-sm" onclick="window.open('./search')">病名で検索</button>&nbsp;&nbsp;-->
         span #{usr} &nbsp;&nbsp;
         a(href="/logout") ログアウト
       p= msg

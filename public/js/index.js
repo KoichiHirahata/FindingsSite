@@ -57,8 +57,21 @@ jQuery(function ($) {
                             $("#conclusion").empty();
                             $(resultTable).appendTo("#conclusion");
                             $('#exam_list').DataTable({
+                                "paging": false,
                                 "bFilter": false,
-                                "pageLength": 25
+                                "pageLength": 25,
+                                "oLanguage": {
+                                    "sLengthMenu": "_MENU_ 件表示",
+                                    "sZeroRecords": "データがありません。",
+                                    "sInfo": "_START_件～_END_件を表示（全_TOTAL_ 件中）",
+                                    "sInfoEmpty": " 0 件中 0 から 0 まで表示",
+                                    "oPaginate": {
+                                        "sFirst": "先頭",
+                                        "sPrevious": "前ページ",
+                                        "sNext": "次ページ",
+                                        "sLast": "最終"
+                                    }
+                                }
                             });
                         });
                     } else {
