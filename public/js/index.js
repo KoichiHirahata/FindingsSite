@@ -49,7 +49,8 @@ jQuery(function ($) {
                             resultTable += "<tr><td>" + result.rows[i].e_day + "</td><td>"
                             + result.rows[i].name_jp
                             + "</td><td><button type=\"button\" class=\"btn btn-success btn-sm\" onclick=\"window.open(\'"
-                            + location.href + "result/" + result.rows[i].exam_id + "\')\">表示</button></td></tr>";
+                            + location.href + "result/" + result.rows[i].exam_id + "\')\">表示</button>&nbsp;&nbsp;"
+                            +"<button type=\"button\" class=\"btn btn-success btn-sm\" onclick=\"\">画像</button></td></tr>";
                         }
 
                         resultTable += "</tbody></table>";
