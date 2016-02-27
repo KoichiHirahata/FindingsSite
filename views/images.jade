@@ -11,11 +11,5 @@ html
     script(src="js/index.js")
     div.container
       h1= title
-      div(align="right")
-        <!--<button type="button" class="btn btn-success btn-sm" onclick="window.open('./search')">病名で検索</button>&nbsp;&nbsp;-->
-        span #{usr} &nbsp;&nbsp;
-        a(href="/logout") ログアウト
       p= msg
-      input#pt_id(type="text" value= patient_id autocomplete="off")
-      input#send_pt_id(type="button", value="検索")
       p#conclusion

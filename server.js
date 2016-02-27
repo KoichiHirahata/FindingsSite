@@ -16,6 +16,7 @@ var login = require('./routes/login');
 var login_post = require('./routes/login_post');
 var logout = require('./routes/logout');
 var result = require('./routes/result');
+var images = require('./routes/images');
 var search = require('./routes/search');
 var search_post = require('./routes/search_post.js');
 var options = {
@@ -59,6 +60,7 @@ app.get("/login", login.index);
 app.post('/login', login_post.index);
 app.get("/logout", logout.index);
 app.get("/result/:exam_id", result.index);
+app.get("/images", images.index);
 app.get("/search", search.index);
 app.post("/search", search_post.index);
 process.on('uncaughtException', function (err) {

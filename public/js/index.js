@@ -50,7 +50,9 @@ jQuery(function ($) {
                             + result.rows[i].name_jp
                             + "</td><td><button type=\"button\" class=\"btn btn-success btn-sm\" onclick=\"window.open(\'"
                             + location.href + "result/" + result.rows[i].exam_id + "\')\">表示</button>&nbsp;&nbsp;"
-                            +"<button type=\"button\" class=\"btn btn-success btn-sm\" onclick=\"\">画像</button></td></tr>";
+                            + "<button type=\"button\" class=\"btn btn-success btn-sm\" onclick=\"window.open(\'"
+                            + location.href + "images/?id=" + result.rows[i].pt_id
+                            + "&e_day=" + result.rows[i].e_day + "\')\">画像</button></td></tr>";
                         }
 
                         resultTable += "</tbody></table>";
