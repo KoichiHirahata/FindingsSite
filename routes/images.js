@@ -21,28 +21,34 @@ exports.index = function (req, res) {
             else {
                 var dirList = [];
                 var dir_path = path.join(c.image_dir, urlInfo.query.id);
-                //var temp_dir: string;
-                //                 var stat
-                // 
-                //                 for (var i = 0; i < files.length; i++) {
-                //                     dir_path = path.join(c.image_dir + urlInfo.query.id, files[i]);
-                //                     try {
-                //                         stat = fs.statSync(dir_path);
-                //                         if (stat.isDirectory()) {
-                //                             dirList.push(dir_path);
-                //                         }
-                //                     }
-                //                     catch (e) {
-                //                         console.log("error:" + e.message);
-                //                     }
-                //                 }
+                // var regularExp = new RegExp(".*");
+                var regularExp = new RegExp(urlInfo.query.id + "_"
+                    + urlInfo.query.e_day.replace(/\u002f/g, "") + "_*");
+                //console.log(urlInfo.query.id + "_" + urlInfo.query.e_day.replace(/\u002f/g, "") + "_*");
                 dirList = files.filter(function (dir_name) {
-                    // return fs.statSync(file).isDirectory() && /.*\.jpg$/.test(file);
-                    return fs.statSync(path.join(dir_path, dir_name)).isDirectory();
+                    return fs.statSync(path.join(dir_path, dir_name)).isDirectory()
+                        && regularExp.test(dir_name);
                 });
-                res.render('images', {
-                    msg: dirList
-                });
+                switch (dirList.length) {
+                    case 0:
+                        res.render('err_close', {
+                            title: c.title,
+                            msg: "該当する画像がありませんでした"
+                        });
+                        break;
+                    case 1:
+                        res.render('images', {
+                            title: c.title,
+                            msg: dirList
+                        });
+                        break;
+                    default:
+                        res.render('images', {
+                            title: c.title,
+                            msg: dirList
+                        });
+                        break;
+                }
             }
         });
     }

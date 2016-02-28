@@ -1,7 +1,15 @@
-extends layout
-
-block content
-  h1 所見閲覧システム
-  p= msg
-  a(href="./") Back
+doctype html
+html
+  head
+    meta(http-equiv="X-UA-Compatible" content="IE=edge")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    title= title
+    link(href="stylesheets/bootstrap.min.css" rel="stylesheet")
+  body()
+    script(src="js/jquery-1.11.1.min.js")
+    script(src="js/bootstrap.min.js")
+    div.container
+      h1 所見閲覧システム
+      p= msg
+      a(href="./") Back
 
