@@ -21,7 +21,6 @@ exports.index = function (req, res) {
             else {
                 var dirList = [];
                 var dir_path = path.join(c.image_dir, urlInfo.query.id);
-                // var regularExp = new RegExp(".*");
                 var regularExp = new RegExp(urlInfo.query.id + "_"
                     + urlInfo.query.e_day.replace(/\u002f/g, "") + "_*");
                 //console.log(urlInfo.query.id + "_" + urlInfo.query.e_day.replace(/\u002f/g, "") + "_*");
@@ -37,15 +36,13 @@ exports.index = function (req, res) {
                         });
                         break;
                     case 1:
-                        res.render('images', {
-                            title: c.title,
-                            msg: dirList
-                        });
+                        res.redirect('../image_folder/?id=' + urlInfo.query.id
+                            + '&folder=' + dirList[0]);
                         break;
                     default:
                         var tableStr = "<table>"
-                            + makeTableRows(dir_path, dirList)
-                            + "</table><br>" + dir_path + "<br>" + dirList;
+                            + makeTableRows(urlInfo.query.id, dirList)
+                            + "</table><br>";
                         res.render('images', {
                             title: c.title,
                             msg: "閲覧したい画像を選んでください。",
@@ -62,11 +59,12 @@ exports.index = function (req, res) {
         });
     }
 };
-function makeTableRows(dir_path, dirList) {
+function makeTableRows(id, dirList) {
     var rowStr = "";
     for (var index = 0; index < dirList.length; index++) {
-        rowStr += "<tr><td>"
-            + path.join(dir_path, dirList[index])
+        rowStr += "<tr><td><a href='../image_folder/?id="
+            + id + "&folder=" + dirList[index] + "' target='_blank'>"
+            + dirList[index] + "</a>"
             + "</td></tr>";
     }
     return rowStr;

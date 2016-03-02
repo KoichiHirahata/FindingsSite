@@ -17,6 +17,7 @@ var login_post = require('./routes/login_post');
 var logout = require('./routes/logout');
 var result = require('./routes/result');
 var images = require('./routes/images');
+var image_folder = require('./routes/image_folder');
 var search = require('./routes/search');
 var search_post = require('./routes/search_post.js');
 var options = {
@@ -24,6 +25,7 @@ var options = {
     cert: fs.readFileSync('server.crt'),
     passphrase: 'knum5728xw'
 };
+var c = require('./routes/conf');
 var app = module.exports = express();
 app.set('port', process.env.PORT || 1337);
 app.set('views', __dirname + '/views');
@@ -50,6 +52,7 @@ var sessionCheck = function (req, res, next) {
     }
 };
 app.use(express.static(__dirname + '/public'));
+app.use(express.static(c.image_dir));
 // development only
 if ('development' == app.get('env')) {
     app.use(errorhandler());
@@ -61,6 +64,7 @@ app.post('/login', login_post.index);
 app.get("/logout", logout.index);
 app.get("/result/:exam_id", result.index);
 app.get("/images", images.index);
+app.get("/image_folder", image_folder.index);
 app.get("/search", search.index);
 app.post("/search", search_post.index);
 process.on('uncaughtException', function (err) {

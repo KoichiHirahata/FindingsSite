@@ -40,16 +40,13 @@ exports.index = function(req, res) {
                         });
                         break;
                     case 1:
-                        res.render('images', {
-                            title: c.title,
-                            msg: dirList
-                        });
+                        res.redirect('../image_folder/?id=' + urlInfo.query.id
+                            + '&folder=' + dirList[0]);
                         break;
                     default:
                         var tableStr: string = "<table>"
-                            + makeTableRows(dir_path, dirList)
+                            + makeTableRows(urlInfo.query.id, dirList)
                             + "</table><br>";
-                            //+ "</table><br>" + dir_path + "<br>" + dirList;
                         res.render('images', {
                             title: c.title,
                             msg: "閲覧したい画像を選んでください。",
@@ -66,11 +63,12 @@ exports.index = function(req, res) {
     }
 };
 
-export function makeTableRows(dir_path: string, dirList: string[]) {
+export function makeTableRows(id: string, dirList: string[]) {
     var rowStr = "";
     for (var index = 0; index < dirList.length; index++) {
-        rowStr += "<tr><td>"
-            + path.join(dir_path, dirList[index])
+        rowStr += "<tr><td><a href='../image_folder/?id="
+            + id + "&folder=" + dirList[index] + "' target='_blank'>"
+            + dirList[index] + "</a>"
             + "</td></tr>";
     }
     return rowStr;
