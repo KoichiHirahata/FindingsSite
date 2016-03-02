@@ -36,7 +36,7 @@ exports.index = function(req, res) {
                         });
                         break;
                     default:
-                        var str: string = "<div class='image-class'>"
+                        var str: string = "<div class='image-class' style='height:100vh;'>"
                             + enableImageFiles(path.join("../", urlInfo.query.id, urlInfo.query.folder), jpgList) //参照 http://kenwheeler.github.io/slick/
                             + "</div><br>";
                         res.render('image_folder', {

@@ -1,6 +1,8 @@
 jQuery(function ($) {
     $(document).ready(function () {
-        $('.image-class').slick();
+        $('.image-class').slick({
+            dots: true
+        });
     });
 });
 //# sourceMappingURL=image_folder.js.map

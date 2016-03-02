@@ -32,7 +32,7 @@ exports.index = function (req, res) {
                         });
                         break;
                     default:
-                        var str = "<div class='image-class'>"
+                        var str = "<div class='image-class' style='height:100vh;'>"
                             + enableImageFiles(path.join("../", urlInfo.query.id, urlInfo.query.folder), jpgList) //参照 http://kenwheeler.github.io/slick/
                             + "</div><br>";
                         res.render('image_folder', {
@@ -56,7 +56,7 @@ function enableImageFiles(dir_path, jpgList) {
     for (var index = 0; index < jpgList.length; index++) {
         rowStr += "<div><img src='"
             + path.join(dir_path, jpgList[index])
-            + "'/></div>";
+            + "'  style='horizontal-align:center;'/></div>";
     }
     return rowStr;
 }
