@@ -1,5 +1,7 @@
 ﻿jQuery(function($) {
     $(document).ready(function() {
-        $('.image-class').slick();
+        $('.image-class').slick({
+            dots: true
+        });
     });
 });
