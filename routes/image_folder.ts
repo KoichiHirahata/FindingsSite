@@ -36,12 +36,10 @@ exports.index = function(req, res) {
                         });
                         break;
                     default:
-                        var str: string = "<div class='image-class' style='height:100vh;'>"
-                            + enableImageFiles(path.join("../", urlInfo.query.id, urlInfo.query.folder), jpgList) //参照 http://kenwheeler.github.io/slick/
-                            + "</div><br>";
+                        var str: string = "<div class='image-class' style='height:100vh; padding:0px;'>"
+                            + enableImageFiles(path.join("../exam_images", urlInfo.query.id, urlInfo.query.folder), jpgList) //参照 http://kenwheeler.github.io/slick/
+                            + "</div>";
                         res.render('image_folder', {
-                            title: "",
-                            msg: "",
                             conclusion: str
                         });
                         break;
@@ -58,7 +56,7 @@ exports.index = function(req, res) {
 export function enableImageFiles(dir_path: string, jpgList: string[]) {
     var rowStr = "";
     for (var index = 0; index < jpgList.length; index++) {
-        rowStr += "<div><img src='"
+        rowStr += "<div style='padding:0px;'><img src='"
             + path.join(dir_path, jpgList[index])
             + "'/></div>";
     }

@@ -27,7 +27,7 @@ var options = {
     cert: fs.readFileSync('server.crt'),
     passphrase: 'knum5728xw'
 };
-var c =require('./routes/conf');
+var c = require('./routes/conf');
 
 var app = module.exports = express();
 
@@ -56,7 +56,8 @@ var sessionCheck = function(req, res, next) {
     }
 };
 app.use(express.static(__dirname + '/public'));
-app.use(express.static(c.image_dir));
+app.use('/exam_images', express.static(c.image_dir));
+app.use('/figures', express.static(c.figure_dir));
 
 // development only
 if ('development' == app.get('env')) {

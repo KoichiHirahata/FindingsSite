@@ -103,8 +103,8 @@ exports.index = function (req, res) {
                                 diagnoses: diagnoses,
                                 equipment: result.rows[0].equipment,
                                 place: result.rows[0].place,
-                                img1: "/image$/" + result.rows[0].exam_day.substr(0, 4) + "/" + exam_id + "_1.png",
-                                img2: "/image$/" + result.rows[0].exam_day.substr(0, 4) + "/" + exam_id + "_2.png",
+                                img1: "/figures/" + result.rows[0].exam_day.substr(0, 4) + "/" + exam_id + "_1.png",
+                                img2: "/figures/" + result.rows[0].exam_day.substr(0, 4) + "/" + exam_id + "_2.png",
                                 findings: result.rows[0].findings,
                                 comment: result.rows[0].comment,
                                 hp: c.hp
@@ -119,7 +119,7 @@ exports.index = function (req, res) {
                     done();
                 }
                 else {
-                    res.render('err', {
+                    res.render('err_close', {
                         msg: 'ログインしていません。'
                     });
                 }
