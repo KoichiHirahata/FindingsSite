@@ -36,8 +36,6 @@ exports.index = function (req, res) {
                             + enableImageFiles(path.join("../exam_images", urlInfo.query.id, urlInfo.query.folder), jpgList) //参照 http://kenwheeler.github.io/slick/
                             + "</div>";
                         res.render('image_folder', {
-                            title: "",
-                            msg: "",
                             conclusion: str
                         });
                         break;

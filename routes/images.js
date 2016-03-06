@@ -40,13 +40,15 @@ exports.index = function (req, res) {
                             + '&folder=' + dirList[0]);
                         break;
                     default:
-                        var tableStr = "<table>"
-                            + makeTableRows(urlInfo.query.id, dirList)
-                            + "</table><br>";
-                        res.render('images', {
-                            title: c.title,
-                            msg: "閲覧したい画像を選んでください。",
-                            conclusion: tableStr
+                        makeImageTableRows(urlInfo.query.id, dirList, function (rows) {
+                            var tableStr = "<table "
+                                + "style='border-collapse: separate; border-spacing:10px;'>"
+                                + rows + "</table>";
+                            res.render('images', {
+                                title: c.title,
+                                msg: "閲覧したい画像を選んでください。",
+                                conclusion: tableStr
+                            });
                         });
                         break;
                 }
@@ -70,53 +72,40 @@ function makeTableRows(id, dirList) {
     return rowStr;
 }
 exports.makeTableRows = makeTableRows;
-/*
-var NameOfJpegFiles = [];
-var rowStr: string = "";
-
-export function makeImageTableRows(dir_path: string, dirList: string[]) {
+function makeImageTableRows(id, dirList, Callback) {
+    var rowStr = "";
+    var count = dirList.length;
     for (var index = 0; index < dirList.length; index++) {
-        getNameOfJpegFiles(path.join(dir_path, dirList[index]), function() {
-            if (NameOfJpegFiles.length > 0) {
-                rowStr += "<tr><td><img src='"
-                    + path.join(path.join(dir_path, dirList[index]), returnTopJpegFileName())
-                    + "' width=350></td></tr>";
+        getNameOfJpegFiles(id, dirList[index], function (err, id, dir, filenames) {
+            // console.log(filenames);
+            // console.log(filenames[0]);
+            if (filenames.length > 0) {
+                rowStr += "<tr><td><a href='../image_folder/?id=" + id
+                    + "&folder=" + dir
+                    + "' target='_blank'><img src='../exam_images/"
+                    + path.join(id, dir, filenames[0])
+                    + "' width=200></td></tr>";
+                count--;
+                if (count === 0) {
+                    Callback(rowStr);
+                }
+            }
+            else {
+                count--;
+                if (count === 0) {
+                    Callback(rowStr);
+                }
             }
         });
     }
-    return rowStr;
 }
-
-export function returnTopJpegFileName() {
-    return NameOfJpegFiles[0];
-}
-
-export function getNameOfJpegFiles(folder: string, Callback) {
-    fs.readdir(folder, function(err, files) {
-        if (err) throw err;
-        // var fileList = files.filter(function(dir_name: string) {
-        //     return /.*\.jpg/.test(dir_name);
-        // });
-        // return fileList[0];
-        NameOfJpegFiles = files.filter(function(file: string) {
+exports.makeImageTableRows = makeImageTableRows;
+function getNameOfJpegFiles(id, dir, Callback) {
+    fs.readdir(path.join(c.image_dir, id, dir), function (err, files) {
+        Callback(err, id, dir, files.filter(function (file) {
             return /.*\.jpg/.test(file);
-        });
-    });
-    Callback();
-}
-
-export function doesContainsJpegFiles(folder: string) {
-    fs.readdir(folder, function(err, files) {
-        if (err) throw err;
-        if ((files.filter(function(file: string) {
-            return /.*\.jpg/.test(file);
-        })).length > 0) {
-            return true;
-        } else {
-            //console.log("[" + folder + "]" + "No jpg file.");
-            return false;
-        }
+        }));
     });
 }
-*/
+exports.getNameOfJpegFiles = getNameOfJpegFiles;
 //# sourceMappingURL=images.js.map
