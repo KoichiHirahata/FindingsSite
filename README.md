@@ -2,6 +2,7 @@ FindingsSite
 ============
 
 Findings browsing system
+[Japanese](./Readme-ja.md)
 
 ## Description
 
