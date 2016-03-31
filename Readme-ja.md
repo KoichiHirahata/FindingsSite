@@ -24,37 +24,52 @@ Node.js
 ###インストール方法（サーバー）
 <https://nodejs.org/en/>　にアクセスして、Node.jsをインストールしてください。  
 
-![node.js hp](    =250x250)  
+![node.js hp](http://www.madeinclinic.jp/software/FindingsSite/images/nodejsHP.png)    
+
 PostgreSQLと通信できるマシン、またはPostgreSQLがインストールされている
 マシンの適当なフォルダに解凍してください。  
 レジストリは一切変更しません。  
 routesフォルダ内のconf.jsをメモ帳などのエディタで開いてください。  
 
-    exports.conf = "tcp://db_user:db_userのパスワード@サーバーIP:ポート/endoDB?ssl=true"; 
+    exports.title = "所見閲覧システム";   
+    exports.conf = "tcp://db_user:db_userのパスワード@サーバーIP:ポート/endoDB? ssl=true"; 
     exports.hp = "医療機関名";    
+    exports.image_dir = "画像フォルダ"; //例：../images/
+    exports.figure_dir = "シェーマフォルダ"; //例：D:/figures
 
-を適切な内容に書き換えてください。 
- 
+が表示されます。
+
+なお,   
+_exports.title_  ページのタイトル  
+_exports.conf_   接続設定  
+_exports.hp_   所見内の医療機関名  
+_exports.image_dir 表示する内視鏡画像のディレクトリ  
+_exports.figure_dir  シェーマ画像のディレクトリ    
+を表しています。　それぞれ適切な内容に書き換えてください。  
+
 例1：  
-    exports.conf = "tcp://db_user:testpassword@localhost:5432/endoDB?ssl=true";    
-    exports.hp = "○○クリニック"; `  
-
-例2：    
+exports.title = "所見閲覧システム";  
 exports.conf = "tcp://db_user:testpassword@192.168.1.1:5432/endoDB?ssl=true";  
-exports.hp = "○○クリニック";  
+exports.hp = "○×クリニック";     
+exports.image_dir = "../images/";  
+exports.figure_dir = "D:/figures"; 
+※注意　パスを記述する際￥印は使えません。
+
+画像例
+![confafter]( http://www.madeinclinic.jp/software/FindingsSite/images/confafter.png)  
 
 [FindingsEditor postgresのインストール](http://www.madeinclinic.jp/%E3%82%BD%E3%83%95%E3%83%88%E3%82%A6%E3%82%A7%E3%82%A2/findings/fe_postgres/)
 を参考にserver.keyとserver.crtを作成し、server.jsと同じフォルダにコピーしてください  
 
-![serverkey]( = 250x250)
+![serverkey]( http://www.madeinclinic.jp/software/FindingsSite/images/serverkey.png)
 
 コマンドラインでそのフォルダに移動し、
 node server.js
 を実行すれば起動します。
 
-![commandline]( = 250x250)  
+![commandline]( http://www.madeinclinic.jp/software/FindingsSite/images/commandline.png)  
 
-Express server listening on port 1337  
+_Express server listening on port 1337_  
 と表示されれば正しく起動されています。コマンドラインで起動し続けてください。
 
 ###インストール方法（クライアント）
@@ -64,19 +79,25 @@ WEBブラウザがあれば特に何もインストールする必要はあり�
 可能であれば、ChromeやFireFoxなどのブラウザの利用をお勧めいたします。）
 
 ##使用方法
+
 Webブラウザで
 https://192.168.1.1:1337/
-（IPは環境に合わせて適宜変更してください）にアクセスすれば利用できるはずです。 
- 
-![loginimg]( = 250x250)  
+（IPは環境に合わせて適宜変更してください）にアクセスすれば利用できます。 
+ IDとパスワードを入力してログインしてください。  
+
+![loginimg]( http://www.madeinclinic.jp/software/FindingsSite/images/loginimg.png)  
 
 次に患者IDを入力することでその患者さんの所見の一覧を表示させることができます。  
 
-![inputID]( = 250x250)
+![inputID]( http://www.madeinclinic.jp/software/FindingsSite/images/inputID.png)
 
-所見一覧から任意の所見の「表示」をクリックすることで所見を表示することができます。  
-![shokenimg]( = 250x250)  
+所見一覧から任意の所見の「表示」をクリックすることで所見を表示することができます。    
+  
+![shokenimg]( http://www.madeinclinic.jp/software/FindingsSite/images/shokenimg.png)  
 
+また所見一覧から「画像」をクリックすることで画像を表示することもできます。
+
+![gazoueturan](http://www.madeinclinic.jp/software/FindingsSite/images/gazoueturan.png)
 ***
 連絡先  
 ご不明な点、ご要望等ございましたら、こちらまでご連絡下さい。  
