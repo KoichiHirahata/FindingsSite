@@ -40,19 +40,19 @@ routesフォルダ内のconf.jsをメモ帳などのエディタで開いてく�
 が表示されます。
 
 なお,   
-_exports.title_  ページのタイトル  
-_exports.conf_   接続設定  
-_exports.hp_   所見内の医療機関名  
-_exports.image_dir 表示する内視鏡画像のディレクトリ  
-_exports.figure_dir  シェーマ画像のディレクトリ    
+exports.title  ページのタイトル  
+exports.conf   接続設定  
+exports.hp   所見内の医療機関名  
+exports.image\_dir   表示する内視鏡画像のディレクトリ  
+exports.figure\_dir    シェーマ画像のディレクトリ    
 を表しています。　それぞれ適切な内容に書き換えてください。  
 
 例1：  
 exports.title = "所見閲覧システム";  
 exports.conf = "tcp://db_user:testpassword@192.168.1.1:5432/endoDB?ssl=true";  
 exports.hp = "○×クリニック";     
-exports.image_dir = "../images/";  
-exports.figure_dir = "D:/figures"; 
+exports.image\_dir = "../images/";  
+exports.figure\_dir = "D:/figures";   
 ※注意　パスを記述する際￥印は使えません。
 
 画像例
@@ -70,10 +70,10 @@ node server.js
 ![commandline]( http://www.madeinclinic.jp/software/FindingsSite/images/commandline.png)  
 
 _Express server listening on port 1337_  
-と表示されれば正しく起動されています。コマンドラインで起動し続けてください。
+と表示されれば正しく起動されています。コマンドラインウィンドウは閉じないでください。
 
 ###インストール方法（クライアント）
-WEBブラウザがあれば特に何もインストールする必要はありません。
+クライアント（閲覧用の端末）は、WEBブラウザがあれば特に何もインストールする必要はありません。
 （インターネットエクスプローラは6以上で動くはずですが、できるだけ
 新しいものを利用してください。
 可能であれば、ChromeやFireFoxなどのブラウザの利用をお勧めいたします。）
@@ -113,6 +113,4 @@ E-mail:<info@madeinclinic.jp>
 自由に使用していただいて構いませんが、  
 著作権は株式会社メイドインクリニックが保有しています。  
 なお、このソフトウェアを使用したことによって生じたすべての
-障害・損害・不具合等に関し、当社は一切の責任を負いません。  
-ソースコードはGitHub上で公開しています。  
-<https://github.com/KoichiHirahata>
+障害・損害・不具合等に関し、当社は一切の責任を負いません。   
